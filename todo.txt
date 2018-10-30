@@ -1,0 +1,10 @@
+-Uppgradering av Wordpress
+-Uppgradering av plugins och Tema
+-Ta bort datum från nyhetslistningar (“Posted on 11 februari, 2017 by Pia Litzell Berg”)
+-Se över hanteringen av “På gång”/“Flyers”/Aktualiteter/nyhetsflöde
+-Informationsstruktur med bl a. “På gång” på “startsidan”.
+-Mailutskick
+-Nyhetsbrev
+-Delningsfunktion för fb/twitter/etc.
+-Allmän uppfräschning och/eller nytt tema (inkl. Logo som John och Thomas inte har hittat ännu)
+-HTTPS
