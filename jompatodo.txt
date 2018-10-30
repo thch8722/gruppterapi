@@ -1,0 +1,1 @@
+-set up ssh till gitklienten (så att du kan pusha till github snabbt och enkelt) 
