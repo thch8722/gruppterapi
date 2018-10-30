@@ -1,1 +1,2 @@
--set up ssh till gitklienten (så att du kan pusha till github snabbt och enkelt) 
+-set up ssh till gitklienten (så att du kan pusha till github snabbt och enkelt)
+(https://help.github.com/articles/connecting-to-github-with-ssh/)
