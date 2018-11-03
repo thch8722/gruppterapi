@@ -1,15 +1,17 @@
 <?php
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-////	File:
-////		file.php
-////	Actions:
-////		1) manipulate files
-////	Account:
-////		Added on July 30th 2007 for ternstyle (tm) v2.0.0
-////	Version:
-////		2.3
-////
-////	Written by Matthew Praetzel. Copyright (c) 2007 Matthew Praetzel.
+//
+//		File:
+//			file.php
+//		Description:
+//			File manipulation functions.
+//		Date:
+//			Added on July 30th 2007 for ternstyle (tm) v2.0.0
+//		Version:
+//			2.4
+//		Copyright:
+//			Copyright (c) 2016 Ternstyle LLC.
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /****************************************Commence Script*******************************************/
@@ -19,12 +21,12 @@ if(!class_exists('fileClass')) {
 class fileClass {
 
 	var $magic = '/usr/share/file/magic';
-	
+
 	var $ma = array('image/gif'=>'image','image/jpeg'=>'image','image/png'=>'image',
 					'text/plain'=>'file','text/rtf'=>'file','application/msword'=>'file','application/pdf'=>'file',
 					'application/x-shockwave-flash'=>'flash');
-	
-	function fileClass() {
+
+	function __construct() {
 		global $ftp_host,$ftp_host_directory,$ftp_username,$ftp_password;
 		$this->h = $ftp_host;
 		$this->d = $ftp_host_directory;
@@ -70,19 +72,19 @@ class fileClass {
 	}
 	function isWritableDirectory($d) {
 		if(!is_dir($d)) {
-			if(!@mkdir($d,0777)) {
+			if(!@mkdir($d,2755)) {
 				return false;
 			}
 		}
 		if(!is_writable($d)) {
-			if(!@chmod($d,0777)) {
+			if(!@chmod($d,2755)) {
 				return false;
 			}
 		}
 		return true;
 	}
 	function directoryList($b) {
-	
+
 		$b = array_merge(array(
 			'dir'	=>	'/',
 			'rec'	=>	false,
@@ -91,7 +93,7 @@ class fileClass {
 			'ext'	=>	false
 		),$b);
 		$b['dir'] = substr($b['dir'],-1) != '/' ? $b['dir'].'/' : $b['dir'];
-		
+
 		if(@is_dir($b['dir'])) {
 			$a = array();
 			if($p = @opendir($b['dir'])) {
@@ -131,12 +133,12 @@ class fileClass {
 	}
 	function createFile($n,$c,$d) {
 		if(!is_dir($d)) {
-			if(!@mkdir($d,0777)) {
+			if(!@mkdir($d,2755)) {
 				return 'directory does not exist';
 			}
 		}
 		if(!is_writable($d)) {
-			if(!@chmod($d,0777)) {
+			if(!@chmod($d,2755)) {
 				return 'directory is not writable';
 			}
 		}

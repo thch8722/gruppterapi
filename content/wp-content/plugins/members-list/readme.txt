@@ -1,24 +1,43 @@
 === Members List Plugin ===
 Contributors: mpraetzel
 Donate link: http://www.ternstyle.us/donate
-Tags: members, members list, users, users list
+License: GPLv2
+Tags: members, members list, users, users list, directory, user directory, map, google map, geolocation
 Requires at least: 2.7
-Tested up to: 3.4
-Stable tag: 3.6.3
+Tested up to: 4.9.8
+Stable tag: 4.1.41
 
-The Members Plugin allows you to create a post on your wordpress blog that lists all your wordpress members.
+With the Members List plugin you can easily list all your site's users with search, location radius search, sorting, paging and more.
 
 == Description ==
 
-The Members Plugin allows you to create a post on your wordpress blog that lists all your wordpress members. When viewing the list of members you can also search through your members according to first name, last name, email address, URL or any other number of user meta fields you may specify. Employing pagination you can page through your search results and sort your results according to last name, first name, registration date, email or any other field you may specify. Documentation: `http://wiki.ternstyle.us/index.php/Wordpress_Members_Plugin_Documentation`
+The Members Plugin allows you to create lists of users and display them as directories on your wordpress blog. Each list is fully customizable with features like search, search by radius, sort, map of users, paging, and more. Choose which fields you want to display for each user and which fields you allow users to search and sort by.
 
-NOTE: A FRESH INSTALLATION OF THE PLUGIN IS REQUIRED TO USE VERSION 3.2!!!!!
 
-* Homepage for this plugin: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin`
-* Documentation: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation`
-* Working example: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo`
-* Change Log: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log`
-* Facebook: `http://www.facebook.com/ternstyle`
+> DOWNLOAD THE PRO VERSION HERE: [http://www.ternstyle.us/members-list-plugin-for-wordpress/](http://www.ternstyle.us/members-list-plugin-for-wordpress/)
+>
+> CHECK OUT THE IMPROVEMENTS HERE: [http://www.ternstyle.us/members-list-plugin-for-wordpress/change-log](http://www.ternstyle.us/members-list-plugin-for-wordpress/change-log)
+
+= Features =
+
+* Create Multiple Lists
+* Customize Each List / Directory (PRO Only)
+* Mobile Friendly (PRO Only)
+* Display your directory anywhere with shortcode
+* Search through your members using user standard and meta fields of your choice
+* Search alphabetically by last name
+* Pagination to page through members list and search results
+* Sort by any field(s) of your choice
+* Radius Search by Zipcode
+* Google Maps (PRO Only)
+* Author Templates (PRO Only)
+* Superior Styling (PRO Only) [http://www.ternstyle.us/members-list-plugin-for-wordpress/demo](http://www.ternstyle.us/members-list-plugin-for-wordpress/demo)
+
+* Homepage for this plugin: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin)
+* Documentation: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation)
+* Working example: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo)
+* Change Log: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log)
+* Facebook: [http://www.facebook.com/ternstyle](http://www.facebook.com/ternstyle)
 
 == Installation ==
 
@@ -30,38 +49,113 @@ NOTE: A FRESH INSTALLATION OF THE PLUGIN IS REQUIRED TO USE VERSION 3.2!!!!!
 
 == Features ==
 
-* List your members in a wordpress page
-* Hide selected members from members list
+* Create Multiple Lists
+* Customize Each List / Directory (PRO Only)
+* Mobile Friendly (PRO Only)
+* Display your directory anywhere with shortcode
 * Search through your members using user standard and meta fields of your choice
 * Search alphabetically by last name
 * Pagination to page through members list and search results
-* Sort by last name, first name, registration date or email or any other field of your choice
-* Create custom lists of users with all the same paging, searching and sorting funcitonality
-* Proximity Search by Zipcode
+* Sort by any field(s) of your choice
+* Radius Search by Zipcode
+* Google Maps (PRO Only)
+* Author Templates (PRO Only)
+* Superior Styling (PRO Only) http://www.ternstyle.us/members-list-plugin-for-wordpress/demo
 
 == Resources ==
 
-* Homepage for this plugin: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin`
-* Documentation: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation`
-* Working example: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo`
-* Change Log: `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log`
-* Facebook: `http://www.facebook.com/ternstyle`
+> DOWNLOAD THE PRO VERSION HERE: [http://www.ternstyle.us/members-list-plugin-for-wordpress/](http://www.ternstyle.us/members-list-plugin-for-wordpress/)
+>
+> CHECK OUT THE IMPROVEMENTS HERE: [http://www.ternstyle.us/members-list-plugin-for-wordpress/change-log](http://www.ternstyle.us/members-list-plugin-for-wordpress/change-log)
+
+* Homepage for this plugin: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin)
+* Documentation: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-documentation)
+* Working example: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/members-list-plugin-demo)
+* Change Log: [http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log](http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log)
+* Facebook: [http://www.facebook.com/ternstyle](http://www.facebook.com/ternstyle)
 
 == Frequently Asked Questions ==
 
 = When I click on a members link it goes nowehere. Why? =
 
-The Members List Plugin does not handle your templates. Wordpress allows you to create a template file called "author.php" which should be placed in your theme's folder. It is this file that handles the displaying of each of your members. You can read about how to create this file here: `http://codex.wordpress.org/Author_Templates`
+The FREE Members List Plugin does not handle your templates. Wordpress allows you to create a template file called "author.php" which should be placed in your theme's folder. It is this file that handles the displaying of each of your members. You can read about how to create this file here: `http://codex.wordpress.org/Author_Templates`
+
+UPGRADE to the PRO version for built-in Author Templates!
+
+> DOWNLOAD THE PRO VERSION HERE: [http://www.ternstyle.us/members-list-plugin-for-wordpress/](http://www.ternstyle.us/members-list-plugin-for-wordpress/)
 
 
 == Screenshots ==
 
-1. This is an image of a the working example found at: `http://blog.ternstyle.us/members`
+1. This is an image of a the working exampl.
 2. This is an image of the administrative settings page for this plugin.
 3. This screenshot is of the new Members List Editing features.
 
 == Changelog ==
+
+= Updates – 11.01.2018 – Version 4.1.41 =
+
+* Bug Fix - Fixed a number of PHP notices.
+* Update - Removed deprecated WordPress functions.
+* Update - Accounted for some conflicts with PHP 7.
+
+= Updates – 01.02.2018 – Version 4.1.4 =
+
+* Bug Fix - Fixed a number of PHP notices.
+
+= Updates – 03.15.2017 – Version 4.1.3 =
+
+* Update - Decoupled from WordPress WP_http.
+
+= Updates – 01.30.2017 – Version 4.1.2 =
+
+* Bug fix - Fixed bug during search where only standard fields were selected.
+* Update - Updated the santizie function to account for deprecation and PHP 7.
+
+= Updates – 01.30.2017 – Version 4.1.1 =
+
+* Bug fix - Fixed search bug.
+
+= Updates – 04.04.2016 – Version 4.1 =
+
+* Bug fix - Fixed a number of PHP warnings.
+
+= Updates – 03.17.2016 – Version 4.0.9 =
+
+* Bug fix - You're now able to delete sort, search, and display fields.
+* Bug Fix - Added error messages for outdated lists and fields from previous versions of the plugin.
+
+= Updates – 02.21.2016 – Version 4.0.8 =
+
+* Bug fix - added HTML class for truncating biographies.
+
+= Updates – 02.21.2016 – Version 4.0.7 =
+
+* Bug fix - added HTML class for truncating biographies.
+
+= Updates – 02.03.2016 – Version 4.0.6 =
+
+* Bug fix for rendering names in list.
+* Bug fix for deleting display fields.
+
+= Updates – 01.23.2016 – Version 4.0 =
+
+* fixed error handling for multiple areas of admin
+* added better admin form styles
+* added a views folder
+* updated error class
+* removed mark-up section (too confusing)
+* mark-up now automatically generated
+* added display field configuring
+* removed hide member functionality
+* updated geolocation class
+* added field selection for display on front-end
+* updated mark-up for display on front-end
+* fixed some minor issues with the search form
+
 `http://www.ternstyle.us/products/plugins/wordpress/wordpress-members-list-plugin/wordpress-members-list-plugin-change-log`
 
 == Upgrade Notice ==
-``
+
+= 4.0 =
+Major upgrades for error handling, initialization of variables, better mark-up rendering, easier display field editing and so on.

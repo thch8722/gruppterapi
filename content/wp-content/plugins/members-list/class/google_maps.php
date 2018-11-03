@@ -10,14 +10,14 @@
 //		Date:
 //			Added on June 18th 2010
 //		Version:
-//			1.1
+//			1.2
 //		Copyright:
-//			Copyright (c) 2011 Matthew Praetzel.
+//			Copyright (c) 2016 Ternstyle LLC.
 //		License:
-//			This software is licensed under the terms of the GNU Lesser General Public License v3
-//			as published by the Free Software Foundation. You should have received a copy of of
-//			the GNU Lesser General Public License along with this software. In the event that you
-//			have not, please visit: http://www.gnu.org/licenses/gpl-3.0.txt
+//			This file (software) is licensed under the terms of the End User License Agreement (EULA)
+//			provided with this software. In the event the EULA is not present with this software
+//			or you have not read it, please visit:
+//			http://www.ternstyle.us/members-list-plugin-for-wordpress/license.html
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +27,7 @@ if(!class_exists('gMaps')) {
 //
 class gMaps {
 
-	function gMaps() {
+	function __construct() {
 		$this->h = new WP_Http();
 	}
 
@@ -40,32 +40,44 @@ class gMaps {
 			'zip'		=>	'',
 			'country'	=>	''
 		),$a);
-		
+
 		$a = $this->format_address();
-		if(!$k) {
-			$x = new ternXML;
-			$r = $this->h->get('http://maps.google.com/maps/api/geocode/xml?sensor=false&language=en&address='.$a);
-			$r = $x->parse($r['body'],1,false);
-			return $r['GeocodeResponse']['result']['geometry']['location'];
+		if(empty($a)) {
+			return false;
+		}
+
+		if(!$k or empty($k)) {
+			$r = $this->h->get('http://maps.google.com/maps/api/geocode/json?sensor=false&language=en&address='.$a);
+			$r = json_decode($r['body']);
+			if(isset($r->results[0]->geometry->location)) {
+				return $r->results[0]->geometry->location;
+			}
+			elseif(isset($r->error_message)) {
+				return $r->error_message;
+			}
 		}
 		else {
-			$x = new ternXML;
-			$r = $this->h->get('http://maps.google.com/maps/geo?output=xml&key='.$k.'&q='.$a);
-			$r = $x->parse($r['body'],1,false);
-			$c = explode(',',$r['kml']['value']['Response']['Placemark']['value']['Point']['coordinates']);
-			array_pop($c);
-			return array('lat'=>$c[0],'lng'=>$c[1]);
+			$r = $this->h->get('https://maps.googleapis.com/maps/api/geocode/json?components=country&key='.$k.'&address='.$a);
+			$r = json_decode($r['body']);
+			if(isset($r->results[0]->geometry->location)) {
+				return $r->results[0]->geometry->location;
+			}
+			elseif(isset($r->error_message)) {
+				return $r->error_message;
+			}
 		}
-	}	
+
+		return false;
+	}
 	function format_address() {
 		$this->sanitize_address();
-		return urlencode(implode(', ',array_filter($this->a,strlen)));
+		return urlencode(implode(', ',array_filter($this->a,'strlen')));
 	}
 	function sanitize_address() {
 		foreach($this->a as $k => $v) {
 			$this->a[$k] = preg_replace("/[^a-zA-Z0-9]+/",'+',trim($v));
 		}
-		$this->a = array_filter($this->a,strlen);
+		$this->a = array_filter($this->a,'strlen');
 	}
 
 }

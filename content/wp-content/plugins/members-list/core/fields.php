@@ -2,12 +2,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //		File:
-//			sort.php
+//			search.php
 //		Description:
-//			This file compiles and processes the plugin's configure sort page.
+//			This file compiles and processes the plugin's configure search page.
 //		Actions:
-//			1) compile plugin sort form
-//			2) process and save plugin sort fields
+//			1) compile plugin search fields form
+//			2) process and save plugin search fields
 //		Date:
 //			Added on May 3rd 2011
 //		Copyright:
@@ -27,7 +27,7 @@
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-if(!isset($_REQUEST['page']) or $_REQUEST['page'] !== 'members-list-configure-sort') {
+if(!isset($_REQUEST['page']) or $_REQUEST['page'] !== 'members-list-configure-fields') {
 	return;
 }
 //                                *******************************                                 //
@@ -35,19 +35,19 @@ if(!isset($_REQUEST['page']) or $_REQUEST['page'] !== 'members-list-configure-so
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-add_action('init','WP_members_list_sort_fields_actions');
-add_action('wp_ajax_order','WP_members_list_sort_fields_actions');
-add_action('init','WP_members_list_sort_fields_styles');
-add_action('init','WP_members_list_sort_fields_scripts');
+add_action('init','WP_members_list_fields_actions');
+add_action('wp_ajax_order','WP_members_list_fields_actions');
+add_action('init','WP_members_list_fields_styles');
+add_action('init','WP_members_list_fields_scripts');
 //                                *******************************                                 //
 //________________________________** SCRIPTS                   **_________________________________//
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-function WP_members_list_sort_fields_styles() {
+function WP_members_list_fields_styles() {
 	wp_enqueue_style('thickbox');
 }
-function WP_members_list_sort_fields_scripts() {
+function WP_members_list_fields_scripts() {
 	wp_enqueue_script('TableDnD');
 	wp_enqueue_script('thickbox');
 }
@@ -56,10 +56,10 @@ function WP_members_list_sort_fields_scripts() {
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-function WP_members_list_sort_fields_actions() {
-	global $getWP,$tern_wp_members_defaults,$current_user,$wpdb;
+function WP_members_list_fields_actions() {
+	global $getWP,$tern_wp_members_defaults;
 	$o = $getWP->getOption('tern_wp_members',$tern_wp_members_defaults);
-	
+			
 	if(!isset($_REQUEST['_wpnonce']) or !wp_verify_nonce($_REQUEST['_wpnonce'],'tern_wp_members_nonce')) {
 		return false;
 	}
@@ -78,11 +78,12 @@ function WP_members_list_sort_fields_actions() {
 				if(!isset($_POST['field_names'])) {
 					die('<div id="message" class="updated fade"><p>There was an error.</p></div>');
 				}
+			
 				$a = array();
 				foreach((array)$_POST['field_names'] as $k => $v) {
 					$a[$v] = $_POST['field_values'][$k];
 				}
-				$o['sorts'] = $a;
+				$o['fields'] = $a;
 				if($getWP->getOption('tern_wp_members',$o,true)) {
 					die('<div id="message" class="updated fade"><p>Your order has been successfully saved.</p></div>');
 				}
@@ -98,30 +99,30 @@ function WP_members_list_sort_fields_actions() {
 			
 			$n = $_POST['name'];
 			
-			if(isset($o['sorts']) and is_array($o['sorts']) and in_array($_POST['field'],(array)$o['sorts'])) {
+			if(isset($o['fields']) and is_array($o['fields']) and in_array($_POST['field'],(array)$o['fields'])) {
 				$getWP->addError('This field has already been added.');
 				return;
 			}
-			$o['sorts'] = is_array($o['sorts']) ? $o['sorts'] : array();
-			$o['sorts'][$n] = $_POST['field'];
+			$o['fields'] = is_array($o['fields']) ? $o['fields'] : array();
+			$o['fields'][$n] = $_POST['field'];
 
 			$o = $getWP->getOption('tern_wp_members',$o,true);
 			break;
 			
 		case 'delete' :
-
-			if(!isset($_REQUEST['sorts']) or empty($_REQUEST['sorts'])) {
+			
+			if(!isset($_REQUEST['fields']) or empty($_REQUEST['fields'])) {
 				$getWP->addError('There was an error.');
 				return;
 			}
-
+			
 			$b = array();
-			foreach((array)$o['sorts'] as $k => $v) {
-				if(!in_array($v,$_REQUEST['sorts'])) {
+			foreach($o['fields'] as $k => $v) {
+				if(!in_array($v,$_REQUEST['fields'])) {
 					$b[$k] = $v;
 				}
 			}
-			$o['sorts'] = $b;
+			$o['fields'] = $b;
 			$o = $getWP->getOption('tern_wp_members',$o,true);
 			
 			break;
@@ -137,12 +138,11 @@ function WP_members_list_sort_fields_actions() {
 //////////////////////////////////**                           **///////////////////////////////////
 //                                **                           **                                 //
 //                                *******************************                                 //
-function WP_members_list_sort_fields() {
+function WP_members_list_fields() {
 	global $getWP,$ternSel,$tern_wp_members_defaults,$WP_ml_user_db_fields;
 	$o = $getWP->getOption('tern_wp_members',$tern_wp_members_defaults);
-	
-	include(MEMBERS_LIST_DIR.'/view/sort.php');
-	include(MEMBERS_LIST_DIR.'/view/sort-form.php');
+	include(MEMBERS_LIST_DIR.'/view/fields.php');
+	include(MEMBERS_LIST_DIR.'/view/fields-form.php');
 }
 
 /****************************************Terminate Script******************************************/
