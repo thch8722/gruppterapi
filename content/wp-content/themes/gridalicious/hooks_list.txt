@@ -1,0 +1,43 @@
+#This is the list of hooks supported bt Gridalicious by default in their respective order in the files. 
+
+
+In gridalicious/content-page.php:
+	gridalicious_before_page_container
+
+
+In gridalicious/content-single.php:
+	gridalicious_before_post_container
+
+
+In gridalicious/content.php:
+	gridalicious_before_entry_container
+
+
+In gridalicious/footer.php:
+	gridalicious_after_content
+	gridalicious_footer
+	gridalicious_after
+
+In gridalicious/header.php:
+	gridalicious_doctype
+	gridalicious_before_wp_head
+	gridalicious_before
+	gridalicious_header
+	gridalicious_after_header
+	gridalicious_before_content
+	gridalicious_content
+
+
+In gridalicious/page.php:
+	gridalicious_comment_section
+
+
+In gridalicious/sidebar.php:
+	gridalicious_before_secondary
+	gridalicious_before_primary_sidebar
+	gridalicious_after_primary_sidebar
+	gridalicious_after_secondary'
+
+
+In gridalicious/single.php:
+	gridalicious_comment_section
