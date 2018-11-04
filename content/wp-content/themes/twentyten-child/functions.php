@@ -37,4 +37,17 @@ function twentyten_child_continue_reading_link() {
 	return ' <a href="'. get_permalink() . '">' . __( 'Läs mer <span class="meta-nav">&rarr;</span>', 'twentyten' ) . '</a>';
 }
 
+
+/* Posted on overriden from parent theme */
+function twentyten_posted_on() {
+	printf( __( '<span class="meta-sep">av</span> %2$s', 'twentyten' ),
+		'meta-prep meta-prep-author',
+		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
+			get_author_posts_url( get_the_author_meta( 'ID' ) ),
+			esc_attr( sprintf( __( 'View all posts by %s', 'twentyten' ), get_the_author() ) ),
+			get_the_author()
+		)
+	);
+}
+
 ?>
