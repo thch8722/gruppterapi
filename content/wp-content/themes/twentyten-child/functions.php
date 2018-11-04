@@ -38,7 +38,7 @@ function twentyten_child_continue_reading_link() {
 }
 
 
-/* Posted on overriden from parent theme */
+/* Post meta data overriden from parent theme */
 function twentyten_posted_on() {
 	printf( __( '<span class="meta-sep">av</span> %2$s', 'twentyten' ),
 		'meta-prep meta-prep-author',
@@ -47,6 +47,25 @@ function twentyten_posted_on() {
 			esc_attr( sprintf( __( 'View all posts by %s', 'twentyten' ), get_the_author() ) ),
 			get_the_author()
 		)
+	);
+}
+function twentyten_posted_in() {
+	// Retrieves tag list of current post, separated by commas.
+	$tag_list = get_the_tag_list( '', ', ' );
+	if ( $tag_list ) {
+		$posted_in = __( '%1$s, tagged %2$s. Bokmärk <a href="%3$s" title="Permalink to %4$s" rel="bookmark">sidan</a>.', 'twentyten' );
+	} elseif ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
+		$posted_in = __( '%1$s. Bokmärk <a href="%3$s" title="Permalink to %4$s" rel="bookmark">sidan</a>.', 'twentyten' );
+	} else {
+		$posted_in = __( 'Bokmärk <a href="%3$s" title="Permalink to %4$s" rel="bookmark">sidan</a>.', 'twentyten' );
+	}
+	// Prints the string, replacing the placeholders.
+	printf(
+		$posted_in,
+		get_the_category_list( ', ' ),
+		$tag_list,
+		get_permalink(),
+		the_title_attribute( 'echo=0' )
 	);
 }
 
