@@ -10,25 +10,21 @@
 //			2) serve posts and post related items
 //			3) handle Wordpress errors
 //		Date:
-//			Created April 21st, 2009 for Wordpress
+//			Created April 21st, 2009 for WordPress
 //		Version:
-//			2.0.3
+//			2.0.7.1
 //		Copyright:
-//			Copyright (c) 2010 Matthew Praetzel.
+//			Copyright (c) 2016 Ternstyle LLC.
 //		License:
-//			This software is licensed under the terms of the End User License Agreement (EULA) 
+//			This file (software) is licensed under the terms of the End User License Agreement (EULA)
 //			provided with this software. In the event the EULA is not present with this software
-//			or you have not read it, please visit: http://www.ternstyle.us/terncal/license.txt
+//			or you have not read it, please visit:
+//			http://www.ternstyle.us/members-list-plugin-for-wordpress/license.html
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /****************************************Commence Script*******************************************/
 
-//                                *******************************                                 //
-//________________________________** WORDPRESS                 **_________________________________//
-//////////////////////////////////**                           **///////////////////////////////////
-//                                **                           **                                 //
-//                                *******************************                                 //
 global $getWP;
 if(!class_exists('ternWP')) {
 //
@@ -36,21 +32,28 @@ class ternWP {
 
 	var $errors = array();
 	var $alerts = array();
+	var $warnings = array();
 
-//                                *******************************                                 //
-//________________________________** OPTIONS                   **_________________________________//
-//////////////////////////////////**                           **///////////////////////////////////
-//                                **                           **                                 //
-//                                *******************************                                 //
+/*------------------------------------------------------------------------------------------------
+	Options
+------------------------------------------------------------------------------------------------*/
+
+	public function verify_nonce() {
+		if((isset($_REQUEST['tern_wpnonce']) and !wp_verify_nonce($_REQUEST['tern_wpnonce'],'tern_wp_theme_nonce'))) {
+			$this->addError('We were unable to process your request for security reasons.');
+			return false;
+		}
+		return true;
+	}
 	function getOption($n,$d='',$v=false) {
 		$o = get_option($n);
-		if(!isset($o) and !empty($d)) {
+		if(!$o and !empty($d)) {
 			add_option($n,$d);
 		}
-		elseif(isset($o) and (empty($o) or $v) and !empty($d)) {
+		elseif($o and (empty($o) or $v) and !empty($d)) {
 			update_option($n,$d);
 		}
-		elseif(isset($o) and !empty($d)) {
+		elseif($o and !empty($d)) {
 			foreach($d as $k => $v) {
 				if(!isset($o[$k])) {
 					$o[$k] = $v;
@@ -61,30 +64,30 @@ class ternWP {
 		return get_option($n);
 	}
 	function updateOption($n,$d,$w) {
-		global $tern_wp_msg;
 		$o = $this->getOption($n,$d);
-		if(wp_verify_nonce($_REQUEST['_wpnonce'],$w) and $_REQUEST['action'] == 'update' and current_user_can('administrator')) {
+		if(isset($_REQUEST['_wpnonce']) and wp_verify_nonce($_REQUEST['_wpnonce'],$w) and $_REQUEST['action'] == 'update' and current_user_can('manage_options')) {
 			$f = new parseForm('post','_wp_http_referer,_wpnonce,action,submit,page,page_id');
 			foreach($o as $k => $v) {
-				if(is_string($v)) {
+				if(is_string($v) and isset($f->a[$k])) {
 					$f->a[$k] = preg_match("/^[0-9]+$/",$f->a[$k]) ? (int)$f->a[$k] : $f->a[$k];
 				}
 				if(!isset($f->a[$k])) {
 					$f->a[$k] = $v;
 				}
 			}
-			return $this->getOption($n,$f->a,true);
-			$tern_wp_msg = empty($tern_wp_msg) ? 'You have successfully updated your settings.' : $tern_wp_msg;
+			if($this->getOption($n,$f->a,true)) {
+				$this->addAlert('You have successfully updated your settings.');
+				return $this->getOption($n,$f->a,true);
+			}
 		}
 		else {
 			return $this->getOption($n,$d);
 		}
 	}
-//                                *******************************                                 //
-//________________________________** POSTS                     **_________________________________//
-//////////////////////////////////**                           **///////////////////////////////////
-//                                **                           **                                 //
-//                                *******************************                                 //
+/*------------------------------------------------------------------------------------------------
+	Posts
+------------------------------------------------------------------------------------------------*/
+
 	function postByName($n) {
 		global $wpdb;
 		return $wpdb->get_var("select ID from $wpdb->posts where post_name='$n'");
@@ -129,34 +132,57 @@ class ternWP {
 
 		}
 		if($preview) {
-			$o = preg_replace_callback('/\%u([0-9A-F]{4})/',create_function('$r','return "&#" . base_convert($r[1], 16, 10) . ";";'),$o);
+			$o = preg_replace_callback('/\%u([0-9A-F]{4})/',function ($r) {
+				return "&#" . base_convert($r[1], 16, 10);
+			},$o);
 		}
 		return $o;
 	}
-//                                *******************************                                 //
-//________________________________** ERRORS                    **_________________________________//
-//////////////////////////////////**                           **///////////////////////////////////
-//                                **                           **                                 //
-//                                *******************************                                 //
+
+/*------------------------------------------------------------------------------------------------
+	Errors
+------------------------------------------------------------------------------------------------*/
+
 	function addError($e) {
 		$this->errors[] = $e;
 	}
 	function renderErrors() {
-		//global $notice;
+		if(empty($this->errors)) {
+			return false;
+		}
 		$notice = '';
 		foreach($this->errors as $v) {
 			$notice .= '<p>'.$v.'</p>';
 		}
+		$this->errors = array();
+		return $notice;
+	}
+	function addWarning($e) {
+		$this->warnings[] = $e;
+	}
+	function renderWarnings() {
+		if(empty($this->warnings)) {
+			return false;
+		}
+		$notice = '';
+		foreach($this->warnings as $v) {
+			$notice .= '<p>'.$v.'</p>';
+		}
+		$this->warnings = array();
 		return $notice;
 	}
 	function addAlert($e) {
 		$this->alerts[] = $e;
 	}
 	function renderAlerts() {
+		if(empty($this->alerts)) {
+			return false;
+		}
 		$notice = '';
 		foreach($this->alerts as $v) {
 			$notice .= '<p>'.$v.'</p>';
 		}
+		$this->alerts = array();
 		return $notice;
 	}
 
@@ -164,6 +190,6 @@ class ternWP {
 $getWP = new ternWP;
 //
 }
-	
+
 /****************************************Terminate Script******************************************/
 ?>

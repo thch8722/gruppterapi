@@ -20,18 +20,18 @@
 /*-----------------------
 	Initialize
 -----------------------*/
-(function ($) {
-	
-	$(document).ready(function () {
+(function ($) {$(document).ready(function () {
 								
 		//tables
-		$('#members_list_fields').tableDnD({
-			onDrop : function () {
-				$('#fields tr:even').addClass('alternate');
-				$('#fields tr:odd').removeClass('alternate');
-				submit_form();
-			}
-		});
+		if($('#members_list_fields').get(0)) {
+			$('#members_list_fields').tableDnD({
+				onDrop : function () {
+					$('#fields tr:even').addClass('alternate');
+					$('#fields tr:odd').removeClass('alternate');
+					submit_form();
+				}
+			});
+		}
 		
 		//forms
 		function submit_form() {
@@ -101,7 +101,26 @@
 			submit_form();
 			edit_field(p);
 		});
-								
+		
+/*------------------------------------------------------------------------------------------------
+	Shortcode
+------------------------------------------------------------------------------------------------*/
+	
+	$('#WP-ml-shortcode-add').bind('click',function (e) {
+		e.preventDefault();		
+		tb_show('','#TB_inline?inlineId=WP-ml-shortcode&width=753&height=400');
+	});
+	$('#WP-ml-shortcode input[type=submit]').bind('click',function (e) {
+		e.preventDefault();
+		var v = $('#WP-ml-shortcode-fields select').val();
+		console.log(v);
+		if(typeof(v) != 'undefined' && v.length > 0) {
+			tinyMCE.get('content').selection.setContent('[members-list id='+v+']');
+		}
+		else {
+			add_error('Please select a valid list to add.');
+		}
+		window.tb_remove();
 	});
 								
-})(jQuery);
+});})(jQuery);

@@ -12,12 +12,7 @@
 //		Version:
 //			2.7
 //		Copyright:
-//			Copyright (c) 2010 Matthew Praetzel.
-//		License:
-//			This software is licensed under the terms of the GNU Lesser General Public License v3
-//			as published by the Free Software Foundation. You should have received a copy of of
-//			the GNU Lesser General Public License along with this software. In the event that you
-//			have not, please visit: http://www.gnu.org/licenses/gpl-3.0.txt
+//			Copyright (c) 2016 Ternstyle LLC.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -26,17 +21,17 @@
 if(!class_exists('parseForm')) {
 //
 class parseForm {
-	
+
 	var $a = array();
 	var $post = NULL;
-	
-	function parseForm($t,$e=array(),$r=array()) {
+
+	function __construct($t,$e=array(),$r=array()) {
 		$this->post = $t == 'post' ? $_POST : $_GET;
 		$r = $this->cleanArray($r);
 		$e = is_array($e) ? $e : explode(",",$e);
 		foreach($this->post as $k => $v) {
 			foreach($r as $w) {
-				if(ereg($w,$k)) {
+				if(preg_match("/".$w."/",$k)) {
 					continue 2;
 				}
 			}
@@ -61,7 +56,7 @@ class parseForm {
 		$r = is_array($r) ? $r : array($r=>$k);
 		foreach($this->post as $k => $v) {
 			foreach($r as $l => $w) {
-				if(ereg($l,$k)) {
+				if(preg_match("/".$l."/",$k)) {
 					$this->a[$w] .= empty($this->a[$w]) ? $v : $s . $v;
 				}
 			}
@@ -71,7 +66,7 @@ class parseForm {
 		$r = $this->cleanArray($r);
 		foreach($this->post as $k => $v) {
 			foreach($r as $l => $w) {
-				if(ereg($l,$k)) {
+				if(preg_match("/".$l."/",$k)) {
 					$this->a[$w] = $v;
 				}
 			}
@@ -105,7 +100,7 @@ class parseForm {
 	function addSlashesForQuotes($s) {
 		return str_replace("'","\'",$s);
 	}
-	
+
 	function noHTML($s) {
 		return htmlentities($s);
 	}
@@ -113,9 +108,10 @@ class parseForm {
 		return rawurlencode($s);
 	}
 	function escape($s) {
-		if(@mysql_real_escape_string($s)) {
+		if(function_exists('mysql_real_escape_string') and @mysql_real_escape_string($s)) {
 			return mysql_real_escape_string($s);
 		}
+		return $s;
 	}
 
 }

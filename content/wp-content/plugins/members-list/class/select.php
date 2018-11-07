@@ -10,30 +10,21 @@
 //		Date:
 //			Added on March 23rd 2006 for ternstyle (tm) v1.0.0
 //		Version:
-//			5.0.3
+//			6.1
 //		Copyright:
-//			Copyright (c) 2011 Matthew Praetzel.
-//		License:
-//			This software is licensed under the terms of the GNU Lesser General Public License v3
-//			as published by the Free Software Foundation. You should have received a copy of of
-//			the GNU Lesser General Public License along with this software. In the event that you
-//			have not, please visit: http://www.gnu.org/licenses/gpl-3.0.txt
+//			Copyright (c) 2016 Ternstyle LLC.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /****************************************Commence Script*******************************************/
 
-if(!class_exists('select')) {
+if(!class_exists('tern_select')) {
 //
-class select {
+class tern_select {
 
 	var $a = array();
 	var $o = '';
 	var $s = '';
-	
-	function __construct() {
-		
-	}
 
 	function create($a=array()) {
 		$this->a = array_merge(array(
@@ -54,13 +45,13 @@ class select {
 			'multiple'		=>	false,
 			'zeros'			=>	false
 		),$a);
-		
+
 		$this->compile_options();
 		$this->compile_select();
 		$this->reset();
-		
+
 		return $this->s;
-		
+
 	}
 	function compile_options() {
 		call_user_func_array(array(&$this,$this->a['type']),array());
@@ -97,7 +88,7 @@ class select {
 				$s = in_array($v[$i][$this->a['value']],$this->a['selected'],true) ? ' selected ' : '';
 				$this->add_option($v[$i][$this->a['key']],$v[$i][$this->a['value']],$s);
 			}
-			$o .= '</optgroup>';
+			$this->o .= '</optgroup>';
 		}
 	}
 	function tiered_paired() {
@@ -108,7 +99,7 @@ class select {
 				$l = empty($l) ? $w : $l;
 				$this->add_option($l,$w,$s);
 			}
-			$o .= '</optgroup>';
+			$this->o .= '</optgroup>';
 		}
 	}
 	function numbers() {
@@ -150,7 +141,7 @@ class select {
 	}
 
 }
-$ternSel = new select;
+$ternSel = new tern_select;
 //
 }
 
