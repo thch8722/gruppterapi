@@ -1,0 +1,20 @@
+/*
+Theme Name: Sydney Child
+Template: sydney
+*/
+
+.posts-layout .entry-thumb {
+	width: 200px;
+	float: left;
+	overflow: hidden;
+	margin-right: 10px;
+	margin-bottom: 0;
+}
+
+.content-area .entry-thumb img{
+	width: 100%;
+}
+
+.content-area .hentry:after {
+	content: none;
+}
