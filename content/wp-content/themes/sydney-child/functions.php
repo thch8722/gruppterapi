@@ -49,7 +49,7 @@ function wpse207895_featured_image() {
     if ($url != ''){
         printf('<img src="' . $url . '" />');
     } else {
-        printf('else');
+        printf('');
     } 
 }
 
