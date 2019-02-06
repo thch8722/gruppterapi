@@ -23,6 +23,35 @@ function sydney_entry_footer() {
     // edit_post_link( __( 'Edit', 'sydney' ), '<span class="edit-link">', '</span>' );
 }
 
+// https://wordpress.stackexchange.com/questions/207895/how-to-display-a-pages-featured-image
+function wpse207895_featured_image() {
+   //Execute if singular
+    if ( is_singular() ) {
+
+        $id = get_queried_object_id ();
+
+        // Check if the post/page has featured image
+        if ( has_post_thumbnail( $id ) ) {
+
+            // Change thumbnail size, but I guess full is what you'll need
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'full' );
+
+            $url = $image[0];
+
+        } else {
+
+            //Set a default image if Featured Image isn't set
+            $url = '';
+
+        }
+    }
+
+    if ($url != ''){
+        printf('<img src="' . $url . '" />');
+    } else {
+        printf('else');
+    } 
+}
 
 
 function my_theme_enqueue_styles() {
