@@ -11,10 +11,34 @@ Template: sydney
 	margin-bottom: 0;
 }
 
-.content-area .entry-thumb img{
-	width: 100%;
+.posts-layout .entry-thumb img {
+	width: 200px;
+}
+
+.content-area .entry-thumb {
+	/* width: 100%; */
+	text-align: left;
 }
 
 .content-area .hentry:after {
 	content: none;
 }
+
+@media only screen and (max-width: 500px) {
+	.posts-layout .entry-thumb {
+		margin-bottom: 10px;
+	}
+
+	.posts-layout .entry-thumb,
+	.posts-layout .entry-thumb img {
+		width: 100%;
+	}
+}
+
+/* Johhnys menu fix: */
+@media only screen and (min-width: 1025px) {
+	.header-wrap .container > .row {
+		align-items: flex-end;
+	}	
+}
+

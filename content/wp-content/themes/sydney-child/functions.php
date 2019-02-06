@@ -10,6 +10,20 @@ function enqueue_child_theme_styles() {
 */
 
 
+/* overriding footer function in parent theme - we dont want edit link */
+function sydney_entry_footer() {
+    // Hide category and tag text for pages.
+    if ( 'post' == get_post_type() ) {
+        /* translators: used between list items, there is a space after the comma */
+        $tags_list = get_the_tag_list( '', __( '', 'sydney' ) );
+        if ( $tags_list && is_single() ) {
+            printf( '<span class="tags-links">' . __( ' %1$s', 'sydney' ) . '</span>', $tags_list );
+        }
+    }
+    // edit_post_link( __( 'Edit', 'sydney' ), '<span class="edit-link">', '</span>' );
+}
+
+
 
 function my_theme_enqueue_styles() {
 
