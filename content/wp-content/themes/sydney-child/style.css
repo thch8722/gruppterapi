@@ -1,0 +1,83 @@
+/*
+Theme Name: Sydney Child
+Template:   sydney
+Version:    1.0.1
+
+*/
+
+.posts-layout .entry-thumb {
+	width: 200px;
+	float: left;
+	overflow: hidden;
+	margin-right: 10px;
+	margin-bottom: 0;
+}
+
+.posts-layout .entry-header {
+	margin-bottom: 0;
+}
+
+.posts-layout .entry-thumb img {
+	width: auto;
+}
+
+.content-area .entry-thumb {
+	width: 50%;
+	text-align: left;
+}
+
+.content-area .hentry:after {
+	content: none;
+}
+
+@media only screen and (max-width: 550px) {
+	.posts-layout .entry-thumb {
+		margin-bottom: 10px;
+	}
+
+	.posts-layout .entry-thumb,
+	.posts-layout .entry-thumb img {
+		width: 100%;
+	}
+}
+
+.h1-hem {
+	font-style: italic;
+	margin: 0 0 24px;
+}
+
+.hentry .title-post {
+	font-size: 30px;
+}
+.hentry h1.title-post {
+	font-size: 38px;
+}
+
+.widget-area .widget-title {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+/* kanedarium */ 
+#tribe-events-content {
+	padding: 0;
+}
+.ecs-event-list h4 {
+	margin-top: 5px;
+}
+
+/* Johhnys menu fix: */
+/*
+@media only screen and (min-width: 1025px) {
+	.header-wrap .container > .row {
+		align-items: flex-end;
+	}	
+}
+*/
+
+/* fix first page - hem */
+/*
+.head-hem .entry-header {
+	margin-bottom: 0;
+}
+*/
