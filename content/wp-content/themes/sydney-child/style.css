@@ -49,6 +49,9 @@ Version:    1.0.1
 .hentry .title-post {
 	font-size: 30px;
 }
+.hentry h1.title-post {
+	font-size: 38px;
+}
 
 .widget-area .widget-title {
 	font-size: 20px;
