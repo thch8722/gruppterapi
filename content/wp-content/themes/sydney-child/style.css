@@ -18,11 +18,11 @@ Version:    1.0.1
 }
 
 .posts-layout .entry-thumb img {
-	width: 200px;
+	width: auto;
 }
 
 .content-area .entry-thumb {
-	/* width: 100%; */
+	width: 50%;
 	text-align: left;
 }
 
@@ -30,7 +30,7 @@ Version:    1.0.1
 	content: none;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
 	.posts-layout .entry-thumb {
 		margin-bottom: 10px;
 	}
@@ -43,7 +43,24 @@ Version:    1.0.1
 
 .h1-hem {
 	font-style: italic;
-	font-size: 48px;
+	margin: 0 0 24px;
+}
+
+.hentry .title-post {
+	font-size: 30px;
+}
+
+.widget-area .widget-title {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+/* kanedarium */ 
+#tribe-events-content {
+	padding: 0;
+}
+.ecs-event-list h4 {
+	margin-top: 5px;
 }
 
 /* Johhnys menu fix: */
