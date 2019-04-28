@@ -109,4 +109,5 @@ Version:    1.0.1
 .personlista li > * {
 	margin-bottom: -4px;
 	margin-top: 0;
+	display: block;
 }
