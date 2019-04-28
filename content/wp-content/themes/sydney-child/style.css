@@ -20,8 +20,10 @@ Version:    1.0.1
 .posts-layout .entry-thumb img {
 	width: auto;
 }
-
+/*
 .content-area .entry-thumb {
+*/
+.posts-layout .entry-thumb {
 	width: 50%;
 	text-align: left;
 }
@@ -81,3 +83,30 @@ Version:    1.0.1
 	margin-bottom: 0;
 }
 */
+
+
+
+/* personlista */
+.personlista {
+	padding-left: 0;
+	list-style-type: none;
+}
+.personlista li > h2 {
+	font-size: 1.2em;
+	margin: 1em 0 .3em;
+}
+.personlista .description {
+	font-size: .95em;
+	line-height: 1.5em;
+	font-style: italic;
+}
+.personlista li {
+	margin-bottom: 1.75em;
+}
+.personlista li > .description {
+	margin-bottom: .25em;
+}
+.personlista li > * {
+	margin-bottom: -4px;
+	margin-top: 0;
+}
