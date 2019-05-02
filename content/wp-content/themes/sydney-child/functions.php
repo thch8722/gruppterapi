@@ -70,5 +70,58 @@ function my_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
+function clash_city_user($user) {
+    $a = '<li>';
+
+    $a .= '<h2>' . $user->first_name . ' ' . $user->last_name . '</h2>';
+
+    if ($user->description) {
+        $a .= '<p class="description">' . $user->description . '</p>';
+    }
+    if ($user->mobile) {
+        $a .= '<div class="phone"><span>tel: </span>' . $user->mobile . '</div>';
+    }
+    if ($user->user_email) {
+        $a .= '<a href="mailto:' . $user->user_email . '" class="email">' . $user->user_email . '</a>';
+    }
+    if ($user->user_url) {
+        $a .= '<a href="' . $user->user_url . '" class="webbplats" target=_blank>' . $user->user_url . '</a>';
+    }
+    $a .= '</li>';
+
+    return $a;
+} 
+
+//[clash-city-rockers]
+function clash_city_rockers( $atts ){
+    $a = shortcode_atts( array(
+        'list' => ''
+    ), $atts );
+
+    if (!$a['list']) {
+        return '[error] ange lista';
+    }
+
+    $user_query = new WP_User_Query(array( 'meta_key' => '_tern_wp_member_list', 'meta_value' => $a['list'] ));
+    $result = $user_query->get_results();
+
+    if (empty($result)) {
+        return 'inga användare i listan';
+    }
+
+    $output = '<ul class="personlista">';
+
+    foreach ($result as $user) {
+        $output .= clash_city_user($user);
+    }
+
+    $output .= '</ul>';
+
+    return $output;
+
+    //return "GO GO Claaash city rockez";
+}
+add_shortcode( 'clash-city-rockers', 'clash_city_rockers' );
+
 
 ?>
